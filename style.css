@@ -1,0 +1,241 @@
+/*primary*/
+/*Neutral*/
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Red Hat Text", sans-serif;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  background: rgb(37, 30, 44);
+  background: linear-gradient(180deg, rgb(31, 32, 40) 0%, rgb(35, 30, 47) 45%, rgb(37, 30, 44) 100%);
+}
+
+a {
+  text-decoration: none;
+}
+
+main {
+  background: url("images/bg-stars.svg");
+  background-repeat: repeat;
+  min-height: calc(100vh - 178px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+main h1 {
+  color: #ffffff;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 7px;
+  margin-bottom: 4rem;
+}
+main .countdown-container {
+  display: flex;
+  gap: 2rem;
+  text-align: center;
+}
+main .countdown-container .count-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+main .countdown-container .count-container > span {
+  text-transform: uppercase;
+  color: #8486a9;
+  letter-spacing: 7px;
+}
+main .countdown-container .count {
+  border-radius: 0.7rem;
+  min-width: 165px;
+  background: #343650;
+  font-size: 5rem;
+  box-shadow: 0px 12px 1px #191a24;
+  margin-bottom: 1.5rem;
+  color: #fb6087;
+  height: 160px;
+  position: relative;
+  line-height: 0;
+  overflow: hidden;
+}
+main .countdown-container .count .circle-r {
+  position: absolute;
+  border-radius: 50%;
+  width: 1.2rem;
+  height: 1.2rem;
+  background-color: #1e1f29;
+  right: -0.7rem;
+  top: 50%;
+  transform: translate(0, -50%);
+  z-index: 4;
+}
+main .countdown-container .count .circle-l {
+  position: absolute;
+  left: -0.7rem;
+  border-radius: 50%;
+  width: 1.2rem;
+  height: 1.2rem;
+  background-color: #1e1f29;
+  top: 50%;
+  transform: translate(0, -50%);
+  z-index: 4;
+}
+main .countdown-container .count .hr {
+  position: absolute;
+  content: "";
+  border: 1px solid #191a24;
+  opacity: 0.2;
+  width: 100%;
+  height: 1px;
+  box-shadow: 0px 3px 3px #757575;
+  left: 0;
+  z-index: 3;
+}
+main .countdown-container .count:before,
+main .countdown-container .count::after {
+  position: absolute;
+  z-index: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50%;
+  left: 0;
+  overflow: hidden;
+}
+main .countdown-container .count:before {
+  content: attr(data-digit-before);
+  bottom: 0;
+  align-items: flex-start;
+}
+main .countdown-container .count::after {
+  content: attr(data-digit-after);
+  top: 0;
+  align-items: flex-end;
+}
+main .countdown-container .card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 50%;
+  transform-style: preserve-3d;
+  transform-origin: bottom;
+  transform: rotateX(0);
+  transition: transform 0.7s ease-in-out;
+}
+main .countdown-container .card.fliped {
+  -webkit-animation: flip-s 1000ms linear infinite;
+          animation: flip-s 1000ms linear infinite;
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+}
+main .countdown-container .flip-m .card.fliped, main .countdown-container .flip-h .card.fliped, main .countdown-container .flip-d .card.fliped {
+  -webkit-animation: flip-s 1000ms ease-out 1;
+          animation: flip-s 1000ms ease-out 1;
+}
+main .countdown-container .card-face {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  left: 0;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  background-color: #343650;
+}
+main .countdown-container .card-face-front {
+  align-items: flex-end;
+  border-top: 1px solid #191a24;
+}
+main .countdown-container .card-face-back {
+  align-items: flex-start;
+  transform: rotateX(-180deg);
+  border-bottom: 1px solid #191a24;
+}
+main .countdown-container .flip-clock {
+  perspective: 100px;
+}
+
+@-webkit-keyframes flip-s {
+  100% {
+    transform: rotateX(-180deg);
+  }
+}
+
+@keyframes flip-s {
+  100% {
+    transform: rotateX(-180deg);
+  }
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: url("/images/pattern-hills.svg");
+  background-size: cover;
+}
+footer ul {
+  padding: 0;
+  padding-top: 2rem;
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  min-height: 150px;
+  align-items: center;
+  justify-content: center;
+}
+footer ul li {
+  padding: 10px 0;
+}
+footer ul li a i {
+  color: #8486a9;
+  transition: all ease-in 200ms;
+}
+footer ul li a i:hover {
+  color: #fb6087;
+}
+
+@media screen and (max-width: 769px) {
+  main .countdown-container .count {
+    min-width: 150px;
+    font-size: 4rem;
+  }
+}
+@media screen and (max-width: 668px) {
+  main .countdown-container .count {
+    min-width: 95px;
+    font-size: 3rem;
+    height: 100px;
+  }
+  main h1 {
+    margin-bottom: 3rem;
+    font-size: 1.3rem;
+  }
+  footer ul {
+    min-height: 50px;
+  }
+  main .countdown-container .count-container > span {
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+}
+@media screen and (max-width: 480px) {
+  main .countdown-container {
+    gap: 1rem;
+  }
+  main .countdown-container .count {
+    min-width: 75px;
+    font-size: 2rem;
+    height: 70px;
+  }
+  main .countdown-container .count-container > span {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+}/*# sourceMappingURL=style.css.map */

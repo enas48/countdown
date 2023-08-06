@@ -1,0 +1,279 @@
+/*primary*/
+$Grayish-blue: #8486a9;
+$Soft-red: #fb6087;
+
+/*Neutral*/
+$White: #ffffff;
+$Dark-desaturated-blue: #343650;
+$Very-dark-blue: #1e1f29;
+$Very-dark: #191a24;
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Red Hat Text', sans-serif;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    background: rgba(37, 30, 44, 1);
+    background: linear-gradient(180deg, rgba(31, 32, 40, 1) 0%, rgba(35, 30, 47, 1) 45%, rgba(37, 30, 44, 1) 100%);
+}
+
+a {
+    text-decoration: none;
+}
+
+main {
+    background: url('images/bg-stars.svg');
+    background-repeat: repeat;
+    min-height: calc(100vh - 178px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    h1 {
+        color: $White;
+        text-transform: uppercase;
+        text-align: center;
+        letter-spacing: 7px;
+        margin-bottom: 4rem;
+    }
+
+    .countdown-container {
+        display: flex;
+        gap: 2rem;
+        text-align: center;
+
+        .count-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .count-container>span {
+            text-transform: uppercase;
+            color: $Grayish-blue;
+            letter-spacing: 7px;
+        }
+
+        .count {
+            border-radius: 0.7rem;
+            min-width: 165px;
+            background: $Dark-desaturated-blue;
+            font-size: 5rem;
+            box-shadow: 0px 12px 1px $Very-dark;
+            margin-bottom: 1.5rem;
+            color: $Soft-red;
+            height: 160px;
+            position: relative;
+            line-height: 0;
+
+            overflow: hidden;
+
+            .circle-r {
+                position: absolute;
+                border-radius: 50%;
+                width: 1.2rem;
+                height: 1.2rem;
+                background-color: $Very-dark-blue;
+                right: -0.7rem;
+                top: 50%;
+                transform: translate(0, -50%);
+                z-index: 4;
+            }
+
+            .circle-l {
+                position: absolute;
+                left: -0.7rem;
+                border-radius: 50%;
+                width: 1.2rem;
+                height: 1.2rem;
+                background-color: $Very-dark-blue;
+                top: 50%;
+                transform: translate(0, -50%);
+                z-index: 4;
+            }
+
+            .hr {
+                position: absolute;
+                content: "";
+                border: 1px solid #191a24;
+                opacity: 0.2;
+                width: 100%;
+                height: 1px;
+                box-shadow: 0px 3px 3px #757575;
+                left: 0;
+                z-index: 3;
+
+            }
+        }
+
+        .count:before,
+        .count::after {
+            position: absolute;
+            z-index: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 50%;
+            left: 0;
+            overflow: hidden;
+
+        }
+
+        .count:before {
+            content: attr(data-digit-before);
+            bottom: 0;
+            align-items: flex-start;
+        }
+
+        .count::after {
+            content: attr(data-digit-after);
+            top: 0;
+            align-items: flex-end;
+
+        }
+
+        .card {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 50%;
+            transform-style: preserve-3d;
+            transform-origin: bottom;
+            transform: rotateX(0);
+            transition: transform 0.7s ease-in-out;
+        }
+
+        .card.fliped {
+            // transform: rotateX(-180deg);
+            animation: flip-s 1000ms linear infinite;
+            animation-delay: 1s;
+        }
+
+        .flip-m .card.fliped, .flip-h .card.fliped, .flip-d .card.fliped {
+            animation: flip-s 1000ms ease-out 1;
+        }
+
+        .card-face {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            left: 0;
+            backface-visibility: hidden;
+            background-color: $Dark-desaturated-blue;
+        }
+
+        .card-face-front {
+            align-items: flex-end;
+            border-top: 1px solid #191a24;
+        }
+
+        .card-face-back {
+            align-items: flex-start;
+            transform: rotateX(-180deg);
+            border-bottom: 1px solid #191a24;
+        }
+
+        .flip-clock {
+
+            perspective: 100px;
+        }
+
+    }
+}
+
+@keyframes flip-s {
+
+    100% {
+        transform: rotateX(-180deg);
+    }
+}
+
+
+footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: url('/images/pattern-hills.svg');
+    background-size: cover;
+
+    ul {
+        padding: 0;
+        padding-top: 2rem;
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+        min-height: 150px;
+        align-items: center;
+        justify-content: center;
+
+        li {
+            padding: 10px 0;
+
+            a i {
+                color: $Grayish-blue;
+                transition: all ease-in 200ms;
+
+                &:hover {
+                    color: $Soft-red;
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width:769px) {
+    main .countdown-container .count {
+        min-width: 150px;
+        font-size: 4rem
+    }
+}
+
+@media screen and (max-width:668px) {
+    main .countdown-container .count {
+        min-width: 95px;
+        font-size: 3rem;
+        height: 100px;
+    }
+
+    main h1 {
+        margin-bottom: 3rem;
+        font-size: 1.3rem;
+    }
+
+    footer ul {
+        min-height: 50px;
+    }
+
+    main .countdown-container .count-container>span {
+        font-size: 12px;
+        letter-spacing: 2px;
+    }
+}
+
+@media screen and (max-width:480px) {
+    main .countdown-container {
+        gap: 1rem;
+    }
+
+    main .countdown-container .count {
+        min-width: 75px;
+        font-size: 2rem;
+        height: 70px;
+    }
+
+    main .countdown-container .count-container>span {
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+}
