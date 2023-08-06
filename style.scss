@@ -20,7 +20,31 @@ body {
     background: rgba(37, 30, 44, 1);
     background: linear-gradient(180deg, rgba(31, 32, 40, 1) 0%, rgba(35, 30, 47, 1) 45%, rgba(37, 30, 44, 1) 100%);
 }
-
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: $Very-dark;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 22222;
+  }
+  .loader img {
+    width: 5%;
+  }
+  .disppear {
+    animation: vanish 1.2s forwards;
+  }
+  
+  @keyframes vanish {
+    100% {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
 a {
     text-decoration: none;
 }

@@ -1,6 +1,14 @@
 var countDownDate = new Date('dec 1, 2023 10:00:00').getTime()
 let flipcard = document.querySelectorAll('.card-face-front')
 
+let loader = document.querySelector('.loader');
+
+/*preloader*/
+window.addEventListener("load", vanish);
+function vanish() {
+  loader.classList.add("disppear")
+}
+
 function setTime (startnumber, el) {
   let element = document.querySelector(el)
   let digit = element.firstElementChild
